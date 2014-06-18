@@ -12,8 +12,8 @@ docker-dependencies:
 kernel-dependencies:
    pkg.installed:
     - pkgs:
-      - linux-image-generic-lts-raring 
-      - linux-headers-generic-lts-raring
+      - linux-image-generic-lts-raring: '3.8.0.42.42'
+      - linux-headers-generic-lts-raring: '3.8.0.42.42' 
 
 docker_repo:
     pkgrepo.managed:
@@ -26,14 +26,15 @@ docker_repo:
         - pkg: docker-python-apt
 
 lxc-docker:
-  pkg.latest:
+  pkg.installed:
     - require:
       - pkg: docker-dependencies
 
 {% if '3.8' not in grains['kernelrelease'] -%}
 reboot_host:
-  module.run:
-    - name: system.reboot
+  cmd.run:
+    - name: |
+        echo "A reboot is required to upgrade to Kernel 3.8, which is required by docker " 
 {% endif -%}
 
 docker:
