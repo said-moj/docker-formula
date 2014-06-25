@@ -1,3 +1,9 @@
+## Version 1.0.2
+    
+    * Use /mnt instead of /var for docker
+    * Removed kernel install, as it should be included in the base OS image
+    * removed docker pgp key
+
 ## Version 1.0.1
 
 * This specifies a specific kernel version be installed
