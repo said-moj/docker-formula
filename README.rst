@@ -15,9 +15,7 @@ Dependencies
 
 .. note::
 
-   Docker has a dependency on kernel version 3.8. This formula checks and upgrades 
-
-   the kernel version, triggering a reboot of the server on completion.
+   Docker has a dependency on kernel version 3.8. Ensure you are running version 3.8 or above before proceeding.
 
 
 Available states
