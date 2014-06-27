@@ -2,6 +2,17 @@ docker-python-apt:
   pkg.installed:
     - name: python-apt
 
+docker-python-pip:
+  pkg.installed:
+    - name: python-pip
+
+docker-python-dockerpy:
+  pip.installed:
+    - name: docker-py
+    - repo: git+https://github.com/dotcloud/docker-py.git
+    - require:
+      - pkg: docker-python-pip
+
 docker-dependencies:
    pkg.installed:
     - pkgs:
@@ -9,33 +20,39 @@ docker-dependencies:
       - ca-certificates
       - lxc
 
-kernel-dependencies:
-   pkg.installed:
-    - pkgs:
-      - linux-image-generic-lts-raring: '3.8.0.42.42'
-      - linux-headers-generic-lts-raring: '3.8.0.42.42' 
 
 docker_repo:
     pkgrepo.managed:
       - repo: 'deb http://get.docker.io/ubuntu docker main'
       - file: '/etc/apt/sources.list.d/docker.list'
-      - key_url: salt://docker/docker.pgp
+      - keyserver: keyserver.ubuntu.com
+      - keyid: 36A1D7869245C8950F966E92D8576A8BA88D21E9
       - require_in:
           - pkg: lxc-docker
       - require:
         - pkg: docker-python-apt
+      - require:
+        - pkg: docker-python-pip
 
 lxc-docker:
   pkg.installed:
     - require:
       - pkg: docker-dependencies
+      - file: docker-symlink
 
-{% if '3.8' not in grains['kernelrelease'] -%}
-reboot_host:
-  cmd.run:
-    - name: |
-        echo "A reboot is required to upgrade to Kernel 3.8, which is required by docker " 
-{% endif -%}
+
+docker-mkdir:
+  file.directory:
+    - name: /mnt/docker
+
+docker-symlink:
+  file.symlink:
+    - name: /var/lib/docker
+    - target: /mnt/docker
+    - require:
+      - file: docker-mkdir
 
 docker:
-  service.running
+  service.running:
+    - require:
+      - pkg: lxc-docker
