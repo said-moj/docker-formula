@@ -14,12 +14,22 @@ docker-python-dockerpy:
       - pkg: docker-python-pip
 
 docker-dependencies:
-   pkg.installed:
+  pkg.installed:
     - pkgs:
       - iptables
       - ca-certificates
       - lxc
 
+docker-mkdir:
+  file.directory:
+    - name: /mnt/docker
+
+/etc/default/docker:
+  file.managed:
+    - source: salt://docker/docker_opts
+    - user: root
+    - group: root
+    - mode: 644
 
 docker_repo:
     pkgrepo.managed:
@@ -38,21 +48,10 @@ lxc-docker:
   pkg.installed:
     - require:
       - pkg: docker-dependencies
-      - file: docker-symlink
-
-
-docker-mkdir:
-  file.directory:
-    - name: /mnt/docker
-
-docker-symlink:
-  file.symlink:
-    - name: /var/lib/docker
-    - target: /mnt/docker
-    - require:
-      - file: docker-mkdir
 
 docker:
   service.running:
     - require:
       - pkg: lxc-docker
+      - file: /etc/default/docker
+      - file: docker-mkdir
