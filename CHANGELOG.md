@@ -1,3 +1,6 @@
+## Version 1.0.3
+    * pass -g /mnt/docker in upstart daemon to workaround this bug https://github.com/dotcloud/docker/issues/3611
+
 ## Version 1.0.2
     
     * Use /mnt instead of /var for docker
