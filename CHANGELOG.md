@@ -1,3 +1,6 @@
+## Version 1.0.4
+    * revert the root of docker runtime back to default
+
 ## Version 1.0.3
     * pass -g /mnt/docker in upstart daemon to workaround this bug https://github.com/dotcloud/docker/issues/3611
 
