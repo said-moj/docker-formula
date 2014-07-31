@@ -9,7 +9,6 @@ docker-python-pip:
 docker-python-dockerpy:
   pip.installed:
     - name: docker-py
-    - repo: git+https://github.com/dotcloud/docker-py.git
     - require:
       - pkg: docker-python-pip
 
@@ -19,17 +18,6 @@ docker-dependencies:
       - iptables
       - ca-certificates
       - lxc
-
-docker-mkdir:
-  file.directory:
-    - name: /mnt/docker
-
-/etc/default/docker:
-  file.managed:
-    - source: salt://docker/docker_opts
-    - user: root
-    - group: root
-    - mode: 644
 
 docker_repo:
     pkgrepo.managed:
@@ -53,5 +41,3 @@ docker:
   service.running:
     - require:
       - pkg: lxc-docker
-      - file: /etc/default/docker
-      - file: docker-mkdir
