@@ -1,3 +1,8 @@
+## Version 1.0.5
+    * docker formula slightly reworked
+    * tests added
+    * docker.py client removed
+   
 ## Version 1.0.4
     * revert the root of docker runtime back to default
 
