@@ -1,3 +1,6 @@
+## Version 1.0.6
+    * hotfix (syntax)
+
 ## Version 1.0.5
     * docker formula slightly reworked
     * tests added
