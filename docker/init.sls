@@ -15,7 +15,7 @@ lxc-docker:
   file.managed:
     - template: jinja
     - source: salt://docker/templates/docker/default
-    - watch_in
+    - watch_in:
       - service: docker
 
 docker:
