@@ -1,4 +1,6 @@
+{% from "docker/map.jinja" import docker with context %}
 include:
+  - python
   - .repo
 
 docker-dependencies:
@@ -6,10 +8,18 @@ docker-dependencies:
     - pkgs:
       - ca-certificates
 
-lxc-docker:
+docker-pkg:
   pkg.installed:
+    - name: {{ docker.pkg }}-{{ docker.pkg_version }}
     - require:
       - pkg: docker-dependencies
+      - pkgrepo: docker_repo
+
+docker-py:
+  pip.installed:
+    - name: docker-py == {{ docker.py_version }}
+    - require:
+      - pkg: docker-pkg
 
 /etc/default/docker:
   file.managed:
@@ -21,4 +31,4 @@ lxc-docker:
 docker:
   service.running:
     - require:
-      - pkg: lxc-docker
+      - pkg: docker-pkg
