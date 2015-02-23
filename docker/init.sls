@@ -18,6 +18,7 @@ docker-pkg:
 docker-py:
   pip.installed:
     - name: docker-py == {{ docker.py_version }}
+    - reload_modules: True
     - require:
       - pkg: docker-pkg
 
