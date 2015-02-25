@@ -1,3 +1,6 @@
+## Version 1.1.1
+    * reload_modules: reload salt modules
+
 ## Version 1.1.0
     * install docker-py (adds python dependency)
     * pinpoint docker version (default 1.5.0)
