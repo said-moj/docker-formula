@@ -11,3 +11,7 @@
 
 # This is also a handy place to tweak where Docker's temporary files go.
 #export TMPDIR="/mnt/bigdrive/docker-tmp"
+
+{% if salt['pillar.get']('insecure_registry', False) -%}
+export DOCKER_OPTS="$DOCKER_OPTS --insecure-registry {{ salt['pillar.get']('docker_registry') }}"
+{%- endif %}
