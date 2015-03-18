@@ -1,3 +1,6 @@
+## Version 1.1.2
+* Add missing dep on python-formula in metadata.yml
+
 ## Version 1.1.1
 * reload_modules: reload salt modules
 
