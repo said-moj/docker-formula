@@ -1,3 +1,6 @@
+## Version 1.2.0
+* distribute docker public key with formula so that we don't have to query ubuntu key server
+
 ## Version 1.1.2
 * Add missing dep on python-formula in metadata.yml
 
