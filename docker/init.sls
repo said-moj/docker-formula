@@ -7,6 +7,7 @@ docker-dependencies:
   pkg.installed:
     - pkgs:
       - ca-certificates
+      - linux-image-extra-{{ salt['grains.get']('kernelrelease') }}
 
 docker-pkg:
   pkg.installed:
@@ -14,6 +15,7 @@ docker-pkg:
     - require:
       - pkg: docker-dependencies
       - pkgrepo: docker_repo
+      - kmod: aufs
 
 docker-py:
   pip.installed:
@@ -33,3 +35,6 @@ docker:
   service.running:
     - require:
       - pkg: docker-pkg
+
+aufs:
+  kmod.present
