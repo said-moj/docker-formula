@@ -1,3 +1,6 @@
+## Unreleased
+* Install the aufs driver by default
+
 ## Version 1.2.0
 * distribute docker public key with formula so that we don't have to query ubuntu key server
 
