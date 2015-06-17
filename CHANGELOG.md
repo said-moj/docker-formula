@@ -1,4 +1,4 @@
-## Version 1.3.x
+## Version 1.3.1
 * Bump docker-py to version 1.2.2 this makes authenticating with private registries easier
 
 ## Version 1.3.0
