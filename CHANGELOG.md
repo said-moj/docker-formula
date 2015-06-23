@@ -1,3 +1,6 @@
+## Unreleased
+* Update the default docker version to 1.6.2
+
 ## Version 1.3.1
 * Bump docker-py to version 1.2.2 this makes authenticating with private registries easier
 
