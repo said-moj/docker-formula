@@ -1,4 +1,4 @@
-## Unreleased
+## Version 1.4.0
 * Update the default docker version to 1.6.2
 
 ## Version 1.3.1
