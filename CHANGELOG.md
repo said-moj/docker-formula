@@ -1,3 +1,6 @@
+## Version 1.4.1
+* Add capability to use different docker data directory.
+
 ## Version 1.4.0
 * Update the default docker version to 1.6.2
 
