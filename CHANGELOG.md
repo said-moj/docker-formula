@@ -1,4 +1,5 @@
 ## Unreleased
+* Bump python-formula requirement to 1.6.
 
 ## Version 1.4.2
 * Update the default Docker version to 1.12.3 and docker-py to 1.10.6.
