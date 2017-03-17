@@ -1,1 +1,1 @@
-ministryofjustice/python-formula==v1.1.6
+ministryofjustice/python-formula==v1.1.7
