@@ -9,7 +9,12 @@ docker-dependencies:
       - pciutils
       - procps
       - ca-certificates
+
+docker-kernel-dependencies:
+  pkg.installed:
+    - pkgs:
       - linux-image-extra-{{ salt['grains.get']('kernelrelease') }}
+    - unless: grep aufs /proc/filesystems
 
 docker-pkg:
   pkg.installed:
@@ -17,6 +22,7 @@ docker-pkg:
     - version: {{ docker.pkg_version }}-0~{{ grains.lsb_distrib_codename }}
     - require:
       - pkg: docker-dependencies
+      - pkg: docker-kernel-dependencies
       - pkgrepo: docker_repo
       - kmod: aufs
 
