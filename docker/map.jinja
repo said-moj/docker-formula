@@ -1,7 +1,7 @@
 {% set docker = salt['grains.filter_by']({
     'Debian': {
-        'pkg': 'docker-engine',
-        'pkg_version': '17.05.0~ce-0~ubuntu-trusty',
+        'pkg': 'docker-ce',
+        'pkg_version': '17.06.2~ce-0~ubuntu_amd64',
         'py_version': '1.10.6',
         'datadir': '',
     },
